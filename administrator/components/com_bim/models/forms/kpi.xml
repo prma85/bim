@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fieldset>
+        <field name="id"  type="text" class="readonly" label="JGLOBAL_FIELD_ID_LABEL" description ="JGLOBAL_FIELD_ID_DESC" size="10" default="0" readonly="true" />
+        <field name="asset_id" type="hidden" filter="unset" />
+        <field name="version" type="text" label="COM_CONTENT_FIELD_VERSION_LABEL" size="6" description="COM_CONTENT_FIELD_VERSION_DESC" class="readonly" readonly="true" filter="unset" />
+        <field name="created" type="timecreated" label="JGLOBAL_FIELD_CREATED_LABEL" description="JGLOBAL_FIELD_CREATED_DESC" size="22" format="%Y-%m-%d %H:%M:%S" class="readonly" readonly="true" filter="user_utc" />
+        <field name="created_by" type="createdby" class="readonly" label="JGLOBAL_FIELD_CREATED_BY_LABEL" description="JGLOBAL_FIELD_CREATED_BY_DESC" />
+        <field name="modified" type="timecreated" class="readonly" label="JGLOBAL_FIELD_MODIFIED_LABEL" size="22" readonly="true" format="%Y-%m-%d %H:%M:%S" filter="user_utc" />
+        <field name="modified_by" type="createdby" label="JGLOBAL_FIELD_MODIFIED_BY_LABEL" description="JGLOBAL_FIELD_MODIFIED_BY_DESC" class="readonly" readonly="true" filter="unset" />
+              
+        <field name="title" type="text"
+               label="COM_BIM_FORM_LBL_KPI_TITLE"
+               description="COM_BIM_FORM_DESC_KPI_TITLE"  /> 
+
+        <field name="alias" type="text" class="inputbox"
+               label="COM_BIM_FORM_LBL_KPI_ALIAS"
+               description="COM_BIM_FORM_DESC_KPI_ALIAS" hint="JFIELD_ALIAS_PLACEHOLDER" /> 
+
+        <field name="title_fr" type="text"
+               label="COM_BIM_FORM_LBL_KPI_TITLE_FR"
+               description="COM_BIM_FORM_DESC_KPI_TITLE_FR" /> 
+
+        <field name="alias_fr" type="text" class="inputbox"
+               label="COM_BIM_FORM_LBL_KPI_ALIAS_FR"
+               description="COM_BIM_FORM_DESC_KPI_ALIAS_FR" hint="JFIELD_ALIAS_PLACEHOLDER" /> 
+
+        <field name="responsible" type="user"
+               label="COM_BIM_FORM_LBL_KPI_RESPONSIBLE"
+               description="COM_BIM_FORM_DESC_KPI_RESPONSIBLE" 
+               required="true"  /> 
+
+        <field name="filter_responsible" type="user" onchange="this.form.submit();" /> 
+
+        <field name="unit" type="unit" class="inputbox"
+               label="COM_BIM_FORM_LBL_KPI_UNIT"
+               description="COM_BIM_FORM_DESC_KPI_UNIT" input_type="list" table="#__usergroups" key_field="id" value_field="title"  required="true"  /> 
+
+        <field name="filter_unit" type="sql" class="inputbox"
+               onchange="this.form.submit();" translate="true"
+               query="SELECT 0 AS `id`, 'COM_BIM_KPIS_UNIT_FILTER_DEFAULT_OPTION' AS `val` UNION SELECT `id`, `title` AS val FROM `#__usergroups` where parent_id = 14" key_field="id" value_field="val"
+        />
+        
+        <field name="category" type="foreignkey" class="inputbox"
+               label="COM_BIM_FORM_LBL_KPI_CATEGORY"
+               description="COM_BIM_FORM_DESC_KPI_CATEGORY" input_type="list" table="#__bim_category" key_field="id" value_field="title"  required="true"  /> 
+
+        <field name="filter_category" type="sql" class="inputbox"
+               onchange="this.form.submit();" translate="true"
+               query="SELECT 0 AS `id`, 'COM_BIM_KPIS_CATEGORY_FILTER' AS `val` UNION SELECT `id`, `title` AS val FROM `#__bim_category`" key_field="id" value_field="val"
+        />
+        
+        <field name="type" type="list"
+               label="COM_BIM_FORM_LBL_KPI_TYPE"
+               description="COM_BIM_FORM_DESC_KPI_TYPE"
+               required="true">
+            <option value="">COM_BIM_SELECT</option>
+            <option value="percentual">% Percentual</option>
+            <option value="currency">$ Currency</option>
+            <option value="number">x Number</option>
+        </field> 
+
+ 
+        <field name="filter_type" type="list" onchange="this.form.submit();">
+            <option value="">COM_BIM_KPIS_TYPE_FILTER</option>
+            <option value="PERCENTUAL">% Percentual</option>
+            <option value="CURRENCY">$ Currency</option>
+            <option value="NUMBER">x Number</option>
+        </field> 
+
+        <field name="increase" type="radio" buttons="true"
+               class="btn-group btn-group-yesno" default="1"
+               label="COM_BIM_FORM_LBL_KPI_INCREASE"
+               description="COM_BIM_FORM_DESC_KPI_INCREASE" >
+            <option value="1">COM_BIM_KPIS_INCREASE_OPTION_ON</option>
+            <option value="0">COM_BIM_KPIS_INCREASE_OPTION_OFF</option>
+        </field> 
+
+        <field name="periodicity" type="list"
+               label="COM_BIM_FORM_LBL_KPI_PERIODICITY"
+               description="COM_BIM_FORM_DESC_KPI_PERIODICITY" 
+               required="true" >
+            <option value="">COM_BIM_SELECT</option>
+            <option value="1">Monthly</option>
+            <option value="2">Bimonthly</option>
+            <option value="3">Quarterly</option>
+            <option value="6">Semester</option>
+            <option value="12">Yearly</option>
+        </field> 
+
+ 
+        <field name="filter_periodicity" type="list" onchange="this.form.submit();">
+            <option value="">COM_BIM_KPIS_PERIODICITY_FILTER</option>
+            <option value="1">Monthly</option>
+            <option value="2">Bimonthly</option>
+            <option value="3">Quarterly</option>
+            <option value="6">Semester</option>
+            <option value="12">Yearly</option>
+        </field> 
+
+        <field name="color" type="list"
+               label="COM_BIM_FORM_LBL_KPI_COLOR"
+               description="COM_BIM_FORM_DESC_KPI_COLOR">
+            <option value="">COM_BIM_SELECT</option>
+            <option value="blue">Blue</option>
+            <option value="green">Green</option>
+            <option value="yellow">Yellow</option>
+            <option value="red">Red</option>
+            <option value="purple">Purple</option>
+        </field> 
+
+ 
+        <field name="version_note"
+                       type="text"
+                       label="JGLOBAL_FIELD_VERSION_NOTE_LABEL"
+                       description="JGLOBAL_FIELD_VERSION_NOTE_DESC"
+                       class="inputbox" size="45"
+                       labelclass="control-label"
+        /> 
+
+ 
+        <field
+            name="state"
+            type="list"
+            label="JSTATUS"
+            description="JFIELD_PUBLISHED_DESC"
+            class="inputbox"
+            size="1"
+            default="1">
+            <option value="1">JPUBLISHED</option>
+            <option value="0">JUNPUBLISHED</option>
+            <option value="2">JARCHIVED</option>
+            <option value="-2">JTRASHED</option>
+        </field> 
+
+        <field name="checked_out" type="hidden" filter="unset" />
+        <field name="checked_out_time" type="hidden" filter="unset" />
+
+    </fieldset>
+
+</form>
