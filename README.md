@@ -1,2 +1,2 @@
 # bim
-Component to admin key indicator performance
+Joomla Component to admin key indicator performance
